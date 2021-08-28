@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MySqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/bookstore?serverTimezone=UTC"
+                        userId="root"
+                        password="toor">
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="net.csdcodes.model" targetProject="F:\SpringBootMyBatisCRUD.git\trunk\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- mappers Generated in targetProject(Namely resources)Directory -->
+        <sqlMapGenerator targetPackage="mappers"  targetProject="F:\SpringBootMyBatisCRUD.git\trunk\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="net.csdcodes.model"  targetProject="F:\SpringBootMyBatisCRUD.git\trunk\src\main\java\net\csdcodes\model">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="employee">
+        </table>
+    </context>
+</generatorConfiguration>

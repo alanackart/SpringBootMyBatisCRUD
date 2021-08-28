@@ -1,7 +1,7 @@
 package net.csdcodes.controller;
 
 import net.csdcodes.model.Employee;
-import net.csdcodes.repository.EmployeeMapper;
+import net.csdcodes.model.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,19 +33,19 @@ public class EmployeeController {
 
     @GetMapping("/emp-list")
     private String employees(Model model){
-        model.addAttribute("employees", mapper.findAll());
+        model.addAttribute("employees", mapper.selectAll());
         return "employee";
     }
 
     @GetMapping("/delete")
     private String delete(@RequestParam("id") int id){
-        mapper.deleteById(id);
+        mapper.deleteByPrimaryKey(id);
         return "redirect:/emp-list";
     }
 
     @GetMapping("/form")
     private String updateForm(@RequestParam("id") int id, Model model){
-        Employee emp = mapper.findById(id);
+        Employee emp = mapper.selectByPrimaryKey(id);
         if(emp != null){
             model.addAttribute("emp", emp);
         }
@@ -54,7 +54,7 @@ public class EmployeeController {
 
     @PostMapping("/update")
     private String update(@ModelAttribute("employee") Employee employee){
-        mapper.update(employee);
+        mapper.updateByPrimaryKey(employee);
         return "redirect:/emp-list";
     }
 
